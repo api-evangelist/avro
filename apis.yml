@@ -1,14 +1,31 @@
+aid: avro
 name: Apache Avro
-description: A data serialization system that provides rich data structures, a compact
-  binary format, and container files for storing persistent data. Avro uses JSON for
-  defining data types and protocols, and serializes data in a compact binary format.
-url: https://avro.apache.org/
+description: >-
+  Apache Avro is a data serialization system that provides rich data structures,
+  a compact binary format, and container files for storing persistent data. Avro
+  uses JSON for defining data types and protocols, and serializes data in a
+  compact binary format.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Data Serialization
-- Binary Format
-- Schema Evolution
-- Big Data
-created: '2025'
-modified: '2025'
+  - Data Serialization
+  - Binary Format
+  - Schema Evolution
+  - Big Data
+  - Apache
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/avro/refs/heads/main/apis.yml
+created: '2025-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 apis: []
-common: []
+common:
+  - type: Website
+    url: https://avro.apache.org/
+  - type: Documentation
+    url: https://avro.apache.org/docs/
+  - type: GitHub Organization
+    url: https://github.com/apache/avro
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
