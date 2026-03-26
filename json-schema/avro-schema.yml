@@ -1,0 +1,251 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api-evangelist.com/schemas/avro/avro-schema.json
+title: Apache Avro Schema
+description: >-
+  JSON Schema for validating Apache Avro schema definitions. Avro schemas are
+  defined in JSON and support primitive types, complex types (records, enums,
+  arrays, maps, unions, fixed), and logical types.
+oneOf:
+  - $ref: '#/$defs/NamedType'
+  - $ref: '#/$defs/PrimitiveType'
+  - $ref: '#/$defs/ArrayType'
+  - $ref: '#/$defs/MapType'
+  - $ref: '#/$defs/UnionType'
+  - type: string
+    description: Reference to a previously defined named type or a primitive type name
+$defs:
+  PrimitiveType:
+    type: string
+    description: Avro primitive type names
+    enum:
+      - 'null'
+      - boolean
+      - int
+      - long
+      - float
+      - double
+      - bytes
+      - string
+  NamedType:
+    oneOf:
+      - $ref: '#/$defs/RecordType'
+      - $ref: '#/$defs/EnumType'
+      - $ref: '#/$defs/FixedType'
+  RecordType:
+    type: object
+    description: >-
+      An Avro record type, analogous to a struct. Contains a list of named
+      fields, each with its own type.
+    required:
+      - type
+      - name
+      - fields
+    properties:
+      type:
+        type: string
+        const: record
+      name:
+        type: string
+        description: Name of the record (must be a valid Avro name)
+        pattern: '^[A-Za-z_][A-Za-z0-9_]*$'
+      namespace:
+        type: string
+        description: Namespace qualifier, similar to a package name
+      doc:
+        type: string
+        description: Documentation string for the record
+      aliases:
+        type: array
+        description: Alternate names for this record (for schema evolution)
+        items:
+          type: string
+      fields:
+        type: array
+        description: List of fields in the record
+        items:
+          $ref: '#/$defs/Field'
+  Field:
+    type: object
+    description: A field within an Avro record
+    required:
+      - name
+      - type
+    properties:
+      name:
+        type: string
+        description: Name of the field
+        pattern: '^[A-Za-z_][A-Za-z0-9_]*$'
+      type:
+        description: >-
+          The field's type. Can be a primitive type name, a complex type
+          definition, a union (array), or a reference to a named type.
+        oneOf:
+          - $ref: '#/$defs/PrimitiveType'
+          - $ref: '#/$defs/RecordType'
+          - $ref: '#/$defs/EnumType'
+          - $ref: '#/$defs/FixedType'
+          - $ref: '#/$defs/ArrayType'
+          - $ref: '#/$defs/MapType'
+          - $ref: '#/$defs/UnionType'
+          - type: string
+            description: Reference to a named type
+      doc:
+        type: string
+        description: Documentation for the field
+      default:
+        description: >-
+          Default value for the field. Must match the field's type. For unions,
+          the default must match the first type in the union.
+      order:
+        type: string
+        description: Sort order for the field when used in sorting
+        enum:
+          - ascending
+          - descending
+          - ignore
+      aliases:
+        type: array
+        description: Alternate names for this field (for schema evolution)
+        items:
+          type: string
+      logicalType:
+        type: string
+        description: Logical type annotation
+        enum:
+          - date
+          - time-millis
+          - time-micros
+          - timestamp-millis
+          - timestamp-micros
+          - local-timestamp-millis
+          - local-timestamp-micros
+          - duration
+          - decimal
+          - uuid
+  EnumType:
+    type: object
+    description: >-
+      An Avro enum type with a fixed set of symbol values.
+    required:
+      - type
+      - name
+      - symbols
+    properties:
+      type:
+        type: string
+        const: enum
+      name:
+        type: string
+        pattern: '^[A-Za-z_][A-Za-z0-9_]*$'
+      namespace:
+        type: string
+      doc:
+        type: string
+      aliases:
+        type: array
+        items:
+          type: string
+      symbols:
+        type: array
+        description: >-
+          List of symbol names defining the allowed values. Each must be unique
+          and a valid Avro name.
+        items:
+          type: string
+          pattern: '^[A-Za-z_][A-Za-z0-9_]*$'
+        minItems: 1
+        uniqueItems: true
+      default:
+        type: string
+        description: Default symbol value for schema evolution
+  FixedType:
+    type: object
+    description: >-
+      An Avro fixed type representing a fixed number of bytes.
+    required:
+      - type
+      - name
+      - size
+    properties:
+      type:
+        type: string
+        const: fixed
+      name:
+        type: string
+        pattern: '^[A-Za-z_][A-Za-z0-9_]*$'
+      namespace:
+        type: string
+      doc:
+        type: string
+      aliases:
+        type: array
+        items:
+          type: string
+      size:
+        type: integer
+        description: Number of bytes per value
+        minimum: 1
+      logicalType:
+        type: string
+        description: Logical type (e.g., decimal, duration)
+        enum:
+          - decimal
+          - duration
+  ArrayType:
+    type: object
+    description: An Avro array type with a single item type
+    required:
+      - type
+      - items
+    properties:
+      type:
+        type: string
+        const: array
+      items:
+        description: Schema for array elements
+        oneOf:
+          - $ref: '#/$defs/PrimitiveType'
+          - $ref: '#/$defs/RecordType'
+          - $ref: '#/$defs/EnumType'
+          - $ref: '#/$defs/FixedType'
+          - $ref: '#/$defs/ArrayType'
+          - $ref: '#/$defs/MapType'
+          - $ref: '#/$defs/UnionType'
+          - type: string
+  MapType:
+    type: object
+    description: An Avro map type with string keys and a single value type
+    required:
+      - type
+      - values
+    properties:
+      type:
+        type: string
+        const: map
+      values:
+        description: Schema for map values (keys are always strings)
+        oneOf:
+          - $ref: '#/$defs/PrimitiveType'
+          - $ref: '#/$defs/RecordType'
+          - $ref: '#/$defs/EnumType'
+          - $ref: '#/$defs/FixedType'
+          - $ref: '#/$defs/ArrayType'
+          - $ref: '#/$defs/MapType'
+          - $ref: '#/$defs/UnionType'
+          - type: string
+  UnionType:
+    type: array
+    description: >-
+      An Avro union type, represented as a JSON array of type definitions.
+      Unions may not contain more than one schema with the same type (except
+      for named types which use distinct names).
+    items:
+      oneOf:
+        - $ref: '#/$defs/PrimitiveType'
+        - $ref: '#/$defs/RecordType'
+        - $ref: '#/$defs/EnumType'
+        - $ref: '#/$defs/FixedType'
+        - $ref: '#/$defs/ArrayType'
+        - $ref: '#/$defs/MapType'
+        - type: string
+    minItems: 1
