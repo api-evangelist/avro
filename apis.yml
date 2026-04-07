@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Data Serialization
-  - Binary Format
-  - Schema Evolution
-  - Big Data
   - Apache
+  - Big Data
+  - Binary Format
+  - Data Serialization
+  - Schema Evolution
 url: >-
   https://raw.githubusercontent.com/api-evangelist/avro/refs/heads/main/apis.yml
 created: '2025-01-01'
@@ -30,9 +30,9 @@ apis:
     humanURL: https://avro.apache.org/docs/current/specification/
     tags:
       - Data Serialization
+      - JSON
       - Schema
       - Schema Evolution
-      - JSON
     properties:
       - type: Documentation
         url: https://avro.apache.org/docs/current/specification/
