@@ -1,0 +1,64 @@
+name: Apache Avro Vocabulary
+description: Normative vocabulary and taxonomy for Apache Avro schema definitions, covering the core type system, schema evolution, and serialization concepts.
+operational:
+  resources:
+    - name: Schema
+      description: An Avro schema definition expressed in JSON, defining the structure and types of data.
+    - name: Record
+      description: A complex named type containing an ordered list of fields, analogous to a struct or class.
+    - name: Field
+      description: A named and typed member of an Avro Record type with optional default and documentation.
+    - name: Enum
+      description: A named type representing a fixed set of allowed string symbol values.
+    - name: Array
+      description: An ordered collection of items sharing the same element type.
+    - name: Map
+      description: A collection of key-value pairs where keys are strings and values share a common type.
+    - name: Union
+      description: A type allowing a value to be one of several defined types, commonly used for nullable fields.
+    - name: Fixed
+      description: A named type representing a fixed number of bytes with a specified size.
+  actions:
+    - name: Serialize
+      description: Convert data to Avro binary or JSON encoding using a schema.
+    - name: Deserialize
+      description: Decode Avro binary or JSON data back to native objects using a schema.
+    - name: Validate
+      description: Check that a schema definition or data conforms to Avro specification rules.
+    - name: Evolve
+      description: Update a schema while maintaining backward, forward, or full compatibility.
+    - name: Register
+      description: Store a schema in a Schema Registry for versioning and compatibility enforcement.
+    - name: Resolve
+      description: Match reader and writer schemas during deserialization using schema resolution rules.
+capability:
+  domains:
+    - name: Data Serialization
+      description: Compact binary encoding and decoding of structured data using schemas.
+    - name: Schema Evolution
+      description: Managing schema changes over time while preserving compatibility between producers and consumers.
+    - name: Event Streaming
+      description: High-throughput message serialization for event-driven architectures using Kafka and Avro.
+    - name: Data Storage
+      description: Persistent storage of Avro data in container files (OCF) for batch processing.
+  namespaces:
+    - prefix: avro
+      uri: https://avro.apache.org/schema#
+    - prefix: avro-types
+      uri: https://avro.apache.org/schema/types#
+normative:
+  must:
+    - All record types must have a name field.
+    - All record types must have a fields array.
+    - All field definitions must include name and type.
+    - All enum types must define a symbols array.
+    - All fixed types must specify a size in bytes.
+  should:
+    - Named types should include a namespace for disambiguation.
+    - Schemas and fields should include doc strings.
+    - Nullable union fields should provide a default value of null.
+    - Schema names should use camelCase or PascalCase convention.
+  may:
+    - Fields may include aliases for schema evolution.
+    - Named types may include aliases for backward compatibility.
+    - Fields may include a default value for forward compatibility.

@@ -1,0 +1,137 @@
+rules:
+  avro-schema-type-required:
+    description: "Avro schemas must specify a type."
+    message: "Avro schema must have a type field."
+    severity: error
+    given: "$"
+    then:
+      field: type
+      function: truthy
+
+  avro-record-name-required:
+    description: "Avro record types must have a name."
+    message: "Record type must have a name field."
+    severity: error
+    given: "$..[?(@.type == 'record')]"
+    then:
+      field: name
+      function: truthy
+
+  avro-record-fields-required:
+    description: "Avro record types must have a fields array."
+    message: "Record type must define fields."
+    severity: error
+    given: "$..[?(@.type == 'record')]"
+    then:
+      field: fields
+      function: truthy
+
+  avro-field-name-required:
+    description: "Each Avro record field must have a name."
+    message: "Record field must have a name."
+    severity: error
+    given: "$..fields[*]"
+    then:
+      field: name
+      function: truthy
+
+  avro-field-type-required:
+    description: "Each Avro record field must have a type."
+    message: "Record field must have a type."
+    severity: error
+    given: "$..fields[*]"
+    then:
+      field: type
+      function: truthy
+
+  avro-enum-name-required:
+    description: "Avro enum types must have a name."
+    message: "Enum type must have a name."
+    severity: error
+    given: "$..[?(@.type == 'enum')]"
+    then:
+      field: name
+      function: truthy
+
+  avro-enum-symbols-required:
+    description: "Avro enum types must define symbols."
+    message: "Enum type must have a symbols array."
+    severity: error
+    given: "$..[?(@.type == 'enum')]"
+    then:
+      field: symbols
+      function: truthy
+
+  avro-fixed-name-required:
+    description: "Avro fixed types must have a name."
+    message: "Fixed type must have a name."
+    severity: error
+    given: "$..[?(@.type == 'fixed')]"
+    then:
+      field: name
+      function: truthy
+
+  avro-fixed-size-required:
+    description: "Avro fixed types must specify a size."
+    message: "Fixed type must have a size in bytes."
+    severity: error
+    given: "$..[?(@.type == 'fixed')]"
+    then:
+      field: size
+      function: truthy
+
+  avro-namespace-recommended:
+    description: "Avro named types should include a namespace."
+    message: "Named type should have a namespace for disambiguation."
+    severity: warn
+    given: "$..[?(@.type == 'record' || @.type == 'enum' || @.type == 'fixed')]"
+    then:
+      field: namespace
+      function: truthy
+
+  avro-doc-recommended:
+    description: "Avro schemas should include documentation."
+    message: "Schema or named type should have a doc string."
+    severity: warn
+    given: "$"
+    then:
+      field: doc
+      function: truthy
+
+  avro-field-doc-recommended:
+    description: "Avro record fields should include documentation."
+    message: "Field should have a doc string describing its purpose."
+    severity: info
+    given: "$..fields[*]"
+    then:
+      field: doc
+      function: truthy
+
+  avro-field-default-for-nullable:
+    description: "Nullable Avro fields should specify a default value."
+    message: "Nullable union field should provide a default value."
+    severity: warn
+    given: "$..fields[?(@.type[0] == 'null')]"
+    then:
+      field: default
+      function: defined
+
+  avro-name-camel-case:
+    description: "Avro schema names should use camelCase or PascalCase."
+    message: "Schema name should use camelCase or PascalCase convention."
+    severity: info
+    given: "$..name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-zA-Z][a-zA-Z0-9]*$"
+
+  avro-namespace-dot-separated:
+    description: "Avro namespaces should use dot-separated package notation."
+    message: "Namespace should use dot-separated notation (e.g., com.example.avro)."
+    severity: warn
+    given: "$..namespace"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9]*)*$"
