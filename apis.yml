@@ -43,7 +43,7 @@ common:
   url: https://avro.apache.org/
 - type: Documentation
   url: https://avro.apache.org/docs/
-- type: GitHub Organization
+- type: GitHubOrganization
   url: https://github.com/apache/avro
 - type: SpectralRules
   url: https://raw.githubusercontent.com/api-evangelist/avro/refs/heads/main/rules/avro-spectral-rules.yml
