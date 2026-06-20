@@ -6,7 +6,7 @@ description: >-
   uses JSON for defining data types and protocols, and serializes data in a
   compact binary format.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Apache
 - Big Data
