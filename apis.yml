@@ -39,6 +39,10 @@ apis:
   - type: JSONSchema
     url: json-schema/avro-schema.yml
 common:
+- type: VulnerabilityDisclosure
+  url: security/avro-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/avro-domain-security.yml
 - type: Website
   url: https://avro.apache.org/
 - type: Documentation
