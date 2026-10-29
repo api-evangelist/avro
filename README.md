@@ -1,4 +1,4 @@
-# Apache Avro (avro)
+# Apache Avro
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,89 +66,115 @@
 
 Apache Avro is a data serialization system that provides rich data structures, a compact binary format, and container files for storing persistent data. Avro uses JSON for defining data types and protocols, and serializes data in a compact binary format.
 
-**URL:** [https://avro.apache.org/](https://avro.apache.org/)
+**Areas:** Apache · Big Data · Binary Format · Data Serialization · Schema Evolution
 
-## Tags
+## Apache Avro on APIs.io
 
- - Apache, Big Data, Binary Format, Data Serialization, Schema Evolution
+Everything profiled for Apache Avro is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/avro/](https://apis.io/providers/avro/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (1)
 
-- **Created:** 2025-01-01
-- **Modified:** 2026-04-19
+- [Apache Avro Schema Format](https://apis.io/apis/avro/avro-schema/) — JSON Schema for validating Apache Avro schema definitions. Covers all Avro types including primitive types (null, boolean, int, long, float, double, bytes,…
 
-## APIs
+### Published properties
 
-### Apache Avro Schema Format
-JSON Schema for validating Apache Avro schema definitions. Covers all Avro types including primitive types (null, boolean, int, long, float, double, bytes, string), complex types (records, enums, arrays, maps, unions, fixed), logical types, and schema evolution features like aliases and default values.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**Human URL:** [https://avro.apache.org/docs/current/specification/](https://avro.apache.org/docs/current/specification/)
+#### Vocabulary (1)
 
-#### Tags
+The provider's domain terms, defined.
 
- - Data Serialization, JSON, Schema, Schema Evolution
+- [Apache Avro Vocabulary](https://apis.io/vocabularies/avro/avro-vocabulary/)
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://avro.apache.org/docs/current/specification/)
-- [JSONSchema](json-schema/avro-schema.yml)
+Spectral rulesets for the provider's contracts.
 
-## Common Properties
+- [Apache Avro — jsonschema rules](https://apis.io/rules/avro/avro-jsonschema-spectral-rules/)
+- [Apache Avro API Rules](https://apis.io/rules/avro/avro-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Avro Domain Security](https://apis.io/security/avro/avro-domain-security/)
+- [Avro Vulnerability Disclosure](https://apis.io/security/avro/avro-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Avro Plans Pricing](https://apis.io/plans/avro/avro-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Avro Rate Limits](https://apis.io/rate-limits/avro/avro-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Avro Finops](https://apis.io/finops/avro/avro-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://avro.apache.org/)
 - [Documentation](https://avro.apache.org/docs/)
-- [GitHubOrganization](https://github.com/apache/avro)
+- [GitHub](https://github.com/apache/avro)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Schema-First Design | Avro requires schemas to be defined in JSON before serialization, enabling strong typing and schema validation. |
-| Schema Evolution | Avro supports backward, forward, and full schema compatibility through aliases, defaults, and type promotions. |
-| Compact Binary Format | Avro serializes data in a compact binary format without field names, reducing payload size significantly. |
-| Rich Type System | Supports primitive types, complex types (records, enums, arrays, maps, unions, fixed), and logical types (date, time, decimal, UUID). |
-| Language Agnostic | Official implementations in Java, Python, C, C++, C#, PHP, Ruby, and Rust with broad ecosystem support. |
-| Container Files | Avro Object Container Files (OCF) embed the schema with the data for self-describing data files. |
-| RPC Support | Avro defines an RPC protocol mechanism using schemas for both request and response messages. |
-| Kafka Native Format | Apache Kafka ecosystem uses Avro as a primary serialization format with the Confluent Schema Registry. |
+**Kin Score 15.4** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 7.2 |
+| Contract governance | 23.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 7.9 |
 
-| Name | Description |
-|------|-------------|
-| Event Streaming | Serialize Kafka events with Avro schemas stored in a Schema Registry for high-throughput data pipelines. |
-| Data Lake Storage | Store large datasets in Avro container files in Hadoop-compatible storage with embedded schema metadata. |
-| Schema Registry Integration | Use Confluent Schema Registry to manage schema versions and enforce compatibility across producers and consumers. |
-| Inter-Service Messaging | Define message contracts between microservices using Avro schemas for type-safe data exchange. |
-| Batch Data Processing | Process large volumes of structured data with Apache Spark, Hive, or Flink using Avro as the interchange format. |
+**Agent readiness 0.6** — human-only
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Apache Kafka | Native serialization format for Kafka messages via the Confluent Schema Registry and Kafka clients. |
-| Apache Spark | Spark SQL and DataFrames support reading and writing Avro files natively. |
-| Apache Hive | Hive tables can be backed by Avro container files with schema stored in the Hive Metastore. |
-| Confluent Schema Registry | Centralized schema management service for validating and evolving Avro schemas in Kafka ecosystems. |
-| Apache Flink | Flink supports Avro for serialization and deserialization of streaming data. |
-| Apache Hadoop | Avro is a native storage format supported by the Hadoop ecosystem for distributed processing. |
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/avro/](https://apis.io/providers/avro/).
 
-### JSON Schema
+## How this profile is made
 
-- [Apache Avro Schema](json-schema/avro-schema.yml)
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-## Vocabulary
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache Avro: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-- [Apache Avro Vocabulary](vocabulary/avro-vocabulary.yaml) — Normative vocabulary mapping 8 resources, 6 actions, and core specification concepts
+## Open an issue
 
-## Rules
-
-- [Avro Spectral Rules](rules/avro-spectral-rules.yml) — 15 rules enforcing Apache Avro schema conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/avro/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
